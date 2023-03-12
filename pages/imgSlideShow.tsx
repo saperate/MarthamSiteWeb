@@ -4,11 +4,9 @@ import styles from '@/styles/Home.module.css';
 import ImgSldShow0 from "../public/ImgSldShow1.png"
 import ImgSldShow1 from "../public/ImgSldShow2.png"
 import ImgSldShow2 from "../public/ImgSldShow3.png"
-import { redirect } from "next/dist/server/api-utils";
-import { useRouter } from "next/router";
-import { debug } from "console";
 
-const Navbar = (props: any) => {
+
+const SldShow = (props: any) => {
 
     const [activeSlideIndex, setActiveSlideIndex] = useState(1);
 
@@ -70,4 +68,4 @@ const Navbar = (props: any) => {
 
 };
 
-export default Navbar;
+export default SldShow;

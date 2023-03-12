@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 import styles from '@/styles/Home.module.css';
 import LogoIcon from "../public/LogoIcon.png"
 import LogoText from "../public/LogoText.png"
-import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
-import { debug } from "console";
+
 
 const Navbar = (props: any) => {
     const router = useRouter()
@@ -47,8 +46,12 @@ const Navbar = (props: any) => {
         }
     }, [lastScrollY]);
 
-    function buttonClick(){
-
+    const {
+        isFallback,
+    } = useRouter();
+    
+    if (isFallback) {
+        return <h1>Fallback</h1>;
     }
 
     return (
