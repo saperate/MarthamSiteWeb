@@ -45,7 +45,7 @@ export default function Home() {
               quia illum quam minima dolorum illo ad consequuntur earum inventore ratione, (+- 50 mots)
               
             </article>
-            <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>Des Questions?</a>
+            <link href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>Des Questions?</link>
           </div>
         </div>
 
@@ -62,9 +62,11 @@ export default function Home() {
               <br />* Service 2
               <br />* Service 3
             </article>
-            <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>En savoir plus</a>
+            <link href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>En savoir plus</link>
           </div>
         </div>
+
+
 
       </main>
 

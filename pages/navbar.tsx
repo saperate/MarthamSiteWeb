@@ -57,11 +57,11 @@ const Navbar = (props: any) => {
             {/* These are the logo images, idealy for mobile, deactivate the second one */}
             <Image src={LogoIcon} className={styles.navbarLogoIcon} alt='/'/>
             <Image src={LogoText} className={styles.navbarLogoIcon} alt='/'/>
-            <a className={`${styles.navbutton} ${styles.contact}`} href="contact">Devis Gratuit</a>
-            <a className={`${styles.navbutton}`} id="faq" href="/faq">Renseignements</a>
-            <a className={`${styles.navbutton}`} id="past" href="/realisations">Nos Réalisations</a>
-            <a className={`${styles.navbutton}`} id="service" href="/services">Nos Services</a>
-            <a className={`${styles.navbutton}`} id="home" href="/">Page Principale</a>
+            <link className={`${styles.navbutton} ${styles.contact}`} href="contact">Devis Gratuit</link>
+            <link className={`${styles.navbutton}`} id="faq" href="/faq">Renseignements</link>
+            <link className={`${styles.navbutton}`} id="past" href="/realisations">Nos Réalisations</link>
+            <link className={`${styles.navbutton}`} id="service" href="/services">Nos Services</link>
+            <link className={`${styles.navbutton}`} id="home" href="/">Page Principale</link>
         </nav>
     );
 };
