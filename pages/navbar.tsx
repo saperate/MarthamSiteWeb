@@ -6,6 +6,7 @@ import LogoText from "../public/LogoText.png"
 import { redirect } from "next/dist/server/api-utils";
 import { useRouter } from "next/router";
 import { debug } from "console";
+import Link from "next/link";
 
 const Navbar = (props: any) => {
     const router = useRouter()
@@ -52,11 +53,11 @@ const Navbar = (props: any) => {
             {/* These are the logo images, idealy for mobile, deactivate the second one */}
             <Image src={LogoIcon} className={styles.navbarLogoIcon} alt='/'/>
             <Image src={LogoText} className={styles.navbarLogoIcon} alt='/'/>
-            <a className={`${styles.navbutton} ${styles.contact}`} href="contact">Devis Gratuit</a>
-            <a className={`${styles.navbutton}`} id="faq" href="/faq">Renseignements</a>
-            <a className={`${styles.navbutton}`} id="past" href="/realisations">Nos Réalisations</a>
-            <a className={`${styles.navbutton}`} id="service" href="/services">Nos Services</a>
-            <a className={`${styles.navbutton}`} id="home" href="/">Page Principale</a>
+            <Link className={`${styles.navbutton} ${styles.contact}`} href="contact">Devis Gratuit</Link>
+            <Link className={`${styles.navbutton}`} id="faq" href="/faq">Renseignements</Link>
+            <Link className={`${styles.navbutton}`} id="past" href="/realisations">Nos Réalisations</Link>
+            <Link className={`${styles.navbutton}`} id="service" href="/services">Nos Services</Link>
+            <Link className={`${styles.navbutton}`} id="home" href="/">Page Principale</Link>
         </nav>
     );
 };
