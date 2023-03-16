@@ -14,39 +14,37 @@ const Navbar = (props: any) => {
     const condition = show ? styles.active : styles.hidden
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-
-            const controlNavbar = () => {
-                if (typeof window !== 'undefined') {
-                    if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
-                        setShow(false);
-                    } else { // if scroll up show the navbar
-                        setShow(true);
-                        
-                    }
-        
-                    // remember current page location to use in the next move
-                    setLastScrollY(window.scrollY);
-                }
-            };
-        
-            const activeButton = () => {
-                console.debug(props.title)
-                const active = document.getElementById(props.title)
-                if(active != null||undefined){
-                    active!.className = active!.className + " " + styles.active
-                }
-                
-            };
-
-            activeButton()
-            window.addEventListener('scroll', controlNavbar);
-            // cleanup function
-            return () => {
-                window.removeEventListener('scroll', controlNavbar);
-            };
-        }
-    }, [lastScrollY]);
+        const controlNavbar = () => {
+          if (typeof window !== 'undefined') {
+            if (window.scrollY > lastScrollY) {
+              setShow(false);
+            } else {
+              setShow(true);
+            }
+            setLastScrollY(window.scrollY);
+          }
+        };
+      
+        const activeButton = () => {
+          if (typeof window !== 'undefined') {
+            const active = document.getElementById(props.title);
+            if (active != null) {
+              active.classList.add(styles.active);
+            }
+          }
+        };
+      
+        activeButton();
+        window.addEventListener('scroll', controlNavbar);
+      
+        return () => {
+          window.removeEventListener('scroll', controlNavbar);
+          const active = document.getElementById(props.title);
+          if (active != null) {
+            active.classList.remove(styles.active);
+          }
+        };
+      }, [lastScrollY, props.title]);
 
     return (
 
