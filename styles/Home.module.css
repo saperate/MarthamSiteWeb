@@ -160,6 +160,54 @@
   border-radius: 10%;
 }
 
+.reviewsContainer{
+  height: 500px;
+  width: 90%;
+  margin: 50px 0px;
+  flex-direction: row;
+  display: flex;
+}
+
+.reviewsIndividual{
+  height: 95%;
+  margin: 0 3%;
+  width: 30%;
+  background-color: #262626;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  border-radius: 5%;
+}
+
+.reviewsHeaderContainer{
+  height: 100px;
+  width: 90%;
+  align-self: center;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.reviewsStars{
+  height: 50%;
+  width: fit-content;
+}
+
+.reviewsBody{
+  width: 80%;
+  text-align: justify;
+  align-self: center;
+  font-size: x-large;
+}
+
+.reviewsName{
+  height: 100px;
+  width: 90%;
+  align-self: center;
+  text-align: right;
+  margin-top: 25px;
+  font-size: xx-large;
+}
+
 .header {
   display: flex;
   justify-content: space-between;

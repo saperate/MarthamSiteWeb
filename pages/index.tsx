@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from './navbar'
+import Reviews from './reviews'
 import ImageSlideShow from "./imgSlideShow"
 import PlaceholderImg from "../public/ImgSldShow1.png"
 
@@ -66,6 +67,7 @@ export default function Home() {
           </div>
         </div>
         
+        <Reviews></Reviews>
 
       </main>
 
