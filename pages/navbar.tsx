@@ -45,11 +45,7 @@ const Navbar = (props: any) => {
                 window.removeEventListener('scroll', controlNavbar);
             };
         }
-    }, [lastScrollY]);
-
-    function buttonClick(){
-
-    }
+    }, [lastScrollY, activeButton, controlNavbar]);
 
     return (
 
