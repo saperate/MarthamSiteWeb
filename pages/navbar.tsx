@@ -1,5 +1,5 @@
 import Image from "next/image"
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import styles from '@/styles/Home.module.css';
 import LogoIcon from "../public/LogoIcon.png"
 import LogoText from "../public/LogoText.png"
@@ -13,31 +13,32 @@ const Navbar = (props: any) => {
     const [lastScrollY, setLastScrollY] = useState(0);
     const condition = show ? styles.active : styles.hidden
 
-    const controlNavbar = () => {
-        if (typeof window !== 'undefined') {
-            if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
-                setShow(false);
-            } else { // if scroll up show the navbar
-                setShow(true);
-                
-            }
-
-            // remember current page location to use in the next move
-            setLastScrollY(window.scrollY);
-        }
-    };
-
-    const activeButton = () => {
-        console.debug(props.title)
-        const active = document.getElementById(props.title)
-        if(active != null||undefined){
-            active!.className = active!.className + " " + styles.active
-        }
-        
-    };
-
     useEffect(() => {
         if (typeof window !== 'undefined') {
+
+            const controlNavbar = () => {
+                if (typeof window !== 'undefined') {
+                    if (window.scrollY > lastScrollY) { // if scroll down hide the navbar
+                        setShow(false);
+                    } else { // if scroll up show the navbar
+                        setShow(true);
+                        
+                    }
+        
+                    // remember current page location to use in the next move
+                    setLastScrollY(window.scrollY);
+                }
+            };
+        
+            const activeButton = () => {
+                console.debug(props.title)
+                const active = document.getElementById(props.title)
+                if(active != null||undefined){
+                    active!.className = active!.className + " " + styles.active
+                }
+                
+            };
+
             activeButton()
             window.addEventListener('scroll', controlNavbar);
             // cleanup function
@@ -45,7 +46,7 @@ const Navbar = (props: any) => {
                 window.removeEventListener('scroll', controlNavbar);
             };
         }
-    }, [lastScrollY, activeButton, controlNavbar]);
+    }, [lastScrollY]);
 
     return (
 
