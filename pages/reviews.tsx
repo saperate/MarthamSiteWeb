@@ -69,6 +69,26 @@ const Navbar = (props: any) => {
                     
                 </div>
             </div>
+
+            <div className={styles.reviewsIndividual}>
+                <div className={styles.reviewsHeaderContainer}>
+                    <Image src={StarFull} alt={'/'} className={styles.reviewsStars}/>
+                    <Image src={StarFull} alt={'/'} className={styles.reviewsStars}/>
+                    <Image src={StarFull} alt={'/'} className={styles.reviewsStars}/>
+                    <Image src={StarFull} alt={'/'} className={styles.reviewsStars}/>
+                    <Image src={StarEmpty} alt={'/'} className={styles.reviewsStars}/>
+                </div>
+                <div className={styles.reviewsBody}>
+                    «Rien à redire. M. Martin Hamel est très consciencieux. Bon suivi et respectueux. 
+                Il a une bonne écoute et bonne qualité de service. Entrepreneur agréable à encourager. Je le recommande. »
+                
+                </div>
+
+                <div className={styles.reviewsName}>
+                    - Client 4
+                    
+                </div>
+            </div>
         </div>
     );
 };
