@@ -59,7 +59,7 @@ const Navbar = (props: any) => {
                     <Image src={StarEmpty} alt={'/'} className={styles.reviewsStars}/>
                 </div>
                 <div className={styles.reviewsBody}>
-                    «Rien à redire . M. Martin Hamel est très consciencieux. Bon suivi et respectueux . 
+                    «Rien à redire. M. Martin Hamel est très consciencieux. Bon suivi et respectueux. 
                 Il a une bonne écoute et bonne qualité de service. Entrepreneur agréable à encourager. Je le recommande. »
                 
                 </div>
