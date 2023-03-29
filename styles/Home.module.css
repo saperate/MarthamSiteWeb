@@ -115,7 +115,8 @@
 }
 
 .articleContainer{
-  background-image: linear-gradient(to left,black 60%, white 90% 100%);
+  background-color: #0b0b0b;
+  color: white;
   height: 300px;
   width: 80%;
   align-self:first baseline;
@@ -135,20 +136,18 @@
 
 .articleBodyContainer{
   width: 50%;
-  margin-left: 75px;
+  margin: 0px 100px;
   display: flex;
   align-content: center;
   flex-flow: column;
 }
 
 .articleTitle{
-  color: black;
   text-align: center;
   font-size: x-large;
 }
 
 .articleBody{
-  color: black;
   text-align: justify;
   font-size: larger;
   margin-top: 25px;

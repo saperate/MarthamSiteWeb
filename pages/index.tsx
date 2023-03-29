@@ -50,7 +50,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.articleContainer} style={{alignSelf: "last baseline", backgroundImage: "linear-gradient(to right,grey 60%, white 90% 100%)" }}>
+        <div className={styles.articleContainer} style={{alignSelf: "last baseline", backgroundColor: "#0b0b0b" }}>
           <Image src={PlaceholderImg} alt='/' className={styles.articleImg}></Image>
           <div className={styles.articleBodyContainer}>
             <div className={styles.articleTitle}>Nos Services</div>
