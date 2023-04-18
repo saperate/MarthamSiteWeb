@@ -3,9 +3,9 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from './navbar'
-import next, { NextApiResponse, NextApiRequest } from 'next'
+import next, { NextApiResponse, NextApiRequest } from "next"
 import getServices from '../lib/getServices'
-import { debug } from 'console'
+import { debug } from "console"
 const inter = Inter({ subsets: ['latin'] })
 import PlaceholderImg from "../public/ImgSldShow1.png"
 
@@ -47,7 +47,7 @@ export default function Home({ data }: { data: Service[] }) {
       <main className={styles.main}>
 
         <div className={styles.servicesMainTitle}>Nos Services</div>
-        <div style={{ color: 'black' }} className={styles.servicesMainTitleBody}>
+        <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
           Placeholder: les icones sont juste des references, style n'est pas complet. Ceci est aussi le main body ou on parle de la qualite
           est notre priorite #1 et on rapelle les gens d'aller voir nos devis gratuit avec un lien. Aussi on met une phrase catchy
         </div>
@@ -61,7 +61,7 @@ export default function Home({ data }: { data: Service[] }) {
               </div>
             </div>
             <div className={styles.servicesThumbnail}>
-              <Image src={item.image} alt='/' width={640} height={426} className={styles.servicesImage} />
+              <Image src={item.image} alt="/" width={640} height={426} className={styles.servicesImage} />
             </div>
           </div>
         ))}

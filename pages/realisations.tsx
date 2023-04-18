@@ -45,7 +45,7 @@ export default function Home({ data }: { data: Service[] }) {
       </Navbar>
 
       <main className={styles.main}>
-        <div style={{color:'red'}}>
+        <div style={{color:"red"}}>
         WIP this uses the service database and it's old layout. im putting it here cause it would fit more nicely here
         Also this will basically be a photo gallery. Im thinking that Before/after photos would go as such:
         you see the final product , there is an indication or smth to hover it maybe a tag, when you do you see a 
@@ -57,7 +57,7 @@ export default function Home({ data }: { data: Service[] }) {
         <div className={styles.realisationsBox}>
           {data.map(item => (
             <div key={item.id} className={styles.realisationsCard}>
-              <Image src={item.image} alt='/' width={640} height={426} className={styles.realisationsThumbnail}/>
+              <Image src={item.image} alt="/" width={640} height={426} className={styles.realisationsThumbnail}/>
               <div className={styles.realisationsTitle}>
               {item.title}
               </div>
