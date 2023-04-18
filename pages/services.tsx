@@ -3,18 +3,32 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from './navbar'
-
-
-/**navbar is above the main which theoredically contains everything. This ensures it is always on top...
-      PLANNING:
-      Hamburger menu to keep the menu small on mobile
-      put logo on there
-      keep it slim
-      button to scroll back to top
-      */
+import next, { NextApiResponse, NextApiRequest } from 'next'
+import getServices from '../lib/getServices'
+import { debug } from 'console'
 const inter = Inter({ subsets: ['latin'] })
+import PlaceholderImg from "../public/ImgSldShow1.png"
 
-export default function Home() {
+export async function getServerSideProps() {
+  const response = await getServices()
+  const data = response.map(item => ({ id: item.Id.toString(), title: item.Title, image: item.ImageUrl, desc: item.Description }))
+
+  console.log(console.log(data.map(item => item.title)))
+  return {
+    props: { data },
+  }
+}
+
+interface Service {
+  id: string;
+  title: string;
+  image: string;
+  desc: string;
+}
+
+export default function Home({ data }: { data: Service[] }) {
+
+
   return (
     <>
       <Head>
@@ -24,22 +38,45 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
+
+
       <Navbar title="service">
 
       </Navbar>
 
       <main className={styles.main}>
 
+        <div className={styles.servicesMainTitle}>Nos Services</div>
+        <div style={{ color: 'black' }} className={styles.servicesMainTitleBody}>
+          Placeholder: les icones sont juste des references, style n'est pas complet. Ceci est aussi le main body ou on parle de la qualite
+          est notre priorite #1 et on rapelle les gens d'aller voir nos devis gratuit avec un lien. Aussi on met une phrase catchy
+        </div>
 
+        {data.map(item => (
+          <div key={item.id} className={styles.servicesCard}>
+            <div className={styles.servicesTitle}>
+              {item.title}
+              <div className={styles.servicesBody}>
+                {item.desc}
+              </div>
+            </div>
+            <div className={styles.servicesThumbnail}>
+              <Image src={item.image} alt='/' width={640} height={426} className={styles.servicesImage} />
+            </div>
+          </div>
+        ))}
 
 
       </main>
 
 
       <script>
-        
+
       </script>
     </>
   )
+
 }
+
+
+

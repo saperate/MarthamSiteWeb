@@ -55,7 +55,7 @@ const Navbar = (props: any) => {
             <Image src={LogoText} className={styles.navbarLogoIcon} alt='/'/>
             <Link className={`${styles.navbutton} ${styles.contact}`} href="contact">Devis Gratuit</Link>
             <Link className={`${styles.navbutton}`} id="faq" href="/faq">Renseignements</Link>
-            <Link className={`${styles.navbutton}`} id="past" href="/realisations">Nos Réalisations</Link>
+            <Link className={`${styles.navbutton}`} id="realisations" href="/realisations">Nos Réalisations</Link>
             <Link className={`${styles.navbutton}`} id="service" href="/services">Nos Services</Link>
             <Link className={`${styles.navbutton}`} id="home" href="/">Page Principale</Link>
         </nav>

@@ -33,7 +33,10 @@ export default function Home() {
 
         <ImageSlideShow />
         <title className={styles.title}>Martham Construction: Qualité, Fiabilité; Notre Spécialitée.</title>
-        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
+        
+        
+
+
         <div className={styles.articleContainer} style={{flexDirection:"row-reverse"}}>
         <Image src={PlaceholderImg} alt='/' className={styles.articleImg}></Image>
           <div className={styles.articleBodyContainer}>
@@ -58,10 +61,10 @@ export default function Home() {
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui,
               quia illum quam minima dolorum illo ad consequuntur earum inventore ratione,
               iste minus rerum, ex vero molestiae corporis atque sapiente voluptatem? (+- 30 mots)
-              <br />
-              <br />* Service 1
-              <br />* Service 2
-              <br />* Service 3
+              <div style={{height:"30px"}}/>
+              <li>Service 1</li>
+              <li>Service 2</li>
+              <li>Et plus encore!</li>
             </article>
             <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>En savoir plus</a>
           </div>
