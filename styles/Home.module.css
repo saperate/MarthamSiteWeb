@@ -103,7 +103,8 @@
 .servicesMainTitleContainer {
   display: flex;
   width: 70%;
-  background-color: #dfdfdf;
+  color: white;
+  background-color: black;
   padding:10px;
   border-radius:5px;
   margin-bottom: 100px;
@@ -111,7 +112,7 @@
 }
 
 .servicesMainTitleBody {
-  color: black;
+  color: white;
   width: 90%;
   height: 175px;
   font-size: x-large;
@@ -120,6 +121,7 @@
 
 .servicesListContainer{
   display:flex;
+  color: white;
 }
 
 .servicesList{

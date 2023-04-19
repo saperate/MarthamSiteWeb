@@ -49,7 +49,7 @@ export default function Home({ data }: { data: Service[] }) {
 
         <div className={styles.servicesMainTitle}>Nos Services</div>
         <div className={styles.servicesMainTitleContainer}>
-          <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
+          <div className={styles.servicesMainTitleBody}>
 
             Chez Martham, la qualité est notre priorité numéro 1. Nous en faisont notre mission de vous offrir
             un service rapide, de qualité tout en conservant un prix avantageux. Nos employés ..
