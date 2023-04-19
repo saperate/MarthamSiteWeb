@@ -103,8 +103,8 @@
 .servicesMainTitleContainer {
   display: flex;
   width: 70%;
-  color: white;
-  background-color: black;
+  height: 11rem;
+  background-color: #bfbfbf;
   padding:10px;
   border-radius:5px;
   margin-bottom: 100px;
@@ -112,11 +112,35 @@
 }
 
 .servicesMainTitleBody {
-  color: white;
+  display:grid;
+  color: black;
   width: 90%;
   height: 175px;
   font-size: x-large;
   margin-bottom: -50px;
+}
+
+
+.servicesTitleContactButton  {
+  position: absolute;
+  bottom:0px;
+  margin-bottom: 25px;
+  margin-left: 25px;
+  height: max-content;
+  width: max-content;
+  padding: 0 1rem;
+  display: flex;
+  object-fit: contain;
+  text-align: center;
+  background-color: red;
+  color: black;
+  border-radius: 5px;
+  justify-self: center;
+}
+
+.servicesTitleContactButton:hover {
+  background-color: white;
+  color:black;
 }
 
 .servicesListContainer{
@@ -128,25 +152,6 @@
   margin: 10px 50px;
 }
 
-.servicesContactButton  {
-  position: absolute;
-  bottom:0px;
-  margin-bottom: 25px;
-  margin-left: 25px;
-  height: max-content;
-  width: max-content;
-  padding: 0 1rem;
-  display: flex;
-  object-fit: contain;
-  text-align: center;
-  background-color: #cf0000;
-  border-radius: 5px;
-  align-items: center;
-}
-
-.servicesContactButton:hover {
-  background-color: red;
-}
 
 .servicesCard {
   background-color: #dfdfdf;

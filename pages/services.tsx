@@ -54,9 +54,9 @@ export default function Home({ data }: { data: Service[] }) {
             Chez Martham, la qualité est notre priorité numéro 1. Nous en faisont notre mission de vous offrir
             un service rapide, de qualité tout en conservant un prix avantageux. Nos employés ..
             .
-            <a href='contact' className={`${styles.servicesContactButton}`}> Recevez un devis gratuitement!</a>
+            <a href='contact' className={`${styles.servicesTitleContactButton}`}> Recevez un devis gratuitement!</a>
           </div>
-          <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
+          
 
         </div>
 
