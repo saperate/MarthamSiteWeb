@@ -28,7 +28,8 @@ interface Service {
 
 export default function Home({ data }: { data: Service[] }) {
 
-
+  /*          Placeholder: les icones sont juste des references, style nest pas complet.
+  Ici, on rapelle les gens daller voir nos devis gratuit avec un lien. Aussi on met une phrase catchy*/
   return (
     <>
       <Head>
@@ -47,28 +48,65 @@ export default function Home({ data }: { data: Service[] }) {
       <main className={styles.main}>
 
         <div className={styles.servicesMainTitle}>Nos Services</div>
-        <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
-          Placeholder: les icones sont juste des references, style nest pas complet.Ici, on rapelle les gens d'aller voir nos devis gratuit avec un lien. Aussi on met une phrase catchy
-          <br/><br/>
-          Chez Martham, la qualité est notre priorité numéro 1. Nous en faisont notre mission de vous offrir 
-          un service rapide, de qualité tout en conservant un prix avantageux. Nos employés ..
-          .
+        <div className={styles.servicesMainTitleContainer}>
+          <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
+
+            Chez Martham, la qualité est notre priorité numéro 1. Nous en faisont notre mission de vous offrir
+            un service rapide, de qualité tout en conservant un prix avantageux. Nos employés ..
+            .
+            <a href='contact' className={`${styles.servicesContactButton}`}> Recevez un devis gratuitement!</a>
+          </div>
+          <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
+
         </div>
 
-        {data.map(item => (
-          <div key={item.id} className={styles.servicesCard}>
-            <div className={styles.servicesTitle}>
-              {item.title}
-              <div className={styles.servicesBody}>
-                {item.desc}
+
+        <div className={styles.servicesMainTitle}>Extérieur</div>
+        <div className={styles.servicesMainTitleContainer}>
+          <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
+
+            Intro rapide sur les services extérieurs:
+            <div className={styles.servicesListContainer}>
+              <div>
+                <li className={styles.servicesList}>Toitures</li>
+                <li className={styles.servicesList}>Patios</li>
+                <li className={styles.servicesList}>Service 3</li>
+              </div>
+              <div>
+                <li className={styles.servicesList}>Service 4</li>
+                <li className={styles.servicesList}>Service 5</li>
+                <li className={styles.servicesList}>Service 6</li>
               </div>
             </div>
-            <div className={styles.servicesThumbnail}>
-              <Image src={item.image} alt="/" width={640} height={426} className={styles.servicesImage} />
-            </div>
+            <a href='contact' className={`${styles.servicesContactButton}`}>Voir nos realisations pour les travaux extérieurs</a>
           </div>
-        ))}
+          <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
 
+        </div>
+
+
+        <div className={styles.servicesMainTitle}>Intérieur</div>
+        <div className={styles.servicesMainTitleContainer}>
+          <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
+
+            Intro rapide sur les services intérieurs:
+            <div className={styles.servicesListContainer}>
+              <div>
+                <li className={styles.servicesList}>Service 1</li>
+                <li className={styles.servicesList}>Service 2</li>
+                <li className={styles.servicesList}>Service 3</li>
+              </div>
+              <div>
+                <li className={styles.servicesList}>Service 4</li>
+                <li className={styles.servicesList}>Service 5</li>
+                <li className={styles.servicesList}>Service 6</li>
+              </div>
+            </div>
+            <a href='contact' className={`${styles.servicesContactButton}`}>Voir nos realisations pour les travaux intérieurs (Couleur martham)</a>
+          </div>
+          <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
+
+        </div>
 
       </main>
 
@@ -82,4 +120,18 @@ export default function Home({ data }: { data: Service[] }) {
 }
 
 
-
+/* This uses a database to place stuff, kinda usefull so ill put it here
+{data.map(item => (
+          <div key={item.id} className={styles.servicesCard}>
+            <div className={styles.servicesTitle}>
+              {item.title}
+              <div className={styles.servicesBody}>
+                {item.desc}
+              </div>
+            </div>
+            <div className={styles.servicesThumbnail}>
+              <Image src={item.image} alt="/" width={640} height={426} className={styles.servicesImage} />
+            </div>
+          </div>
+        ))}
+*/

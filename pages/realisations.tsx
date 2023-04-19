@@ -50,8 +50,8 @@ export default function Home({ data }: { data: Service[] }) {
         Also this will basically be a photo gallery. Im thinking that Before/after photos would go as such:
         you see the final product , there is an indication or smth to hover it maybe a tag, when you do you see a 
         diagonal line pass over and its like gradually switching to the old pic. It stops in the middle.
-        maybe when click it opens a bigger version of it in the screen so that you can "zoom". then you can remove it
-        by either clicking off the box or clicking a x idk which
+        maybe when click it opens a bigger version of it in the screen so that you can zoom. then you can remove it
+        by either clicking off the box or clicking a x idk which. Also add a search bar by type of job done(ex: toiture)
         </div>
 
         <div className={styles.realisationsBox}>
