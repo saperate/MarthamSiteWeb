@@ -50,20 +50,22 @@ export default function Home({ data }: { data: Service[] }) {
         <div className={styles.servicesMainTitle}>Nos Services</div>
         <div className={styles.servicesMainTitleContainer}>
           <div className={styles.servicesMainTitleBody}>
+            <div style={{padding:"0px 10%", textAlign:"justify"}}>
+              Chez Martham, la qualité est notre priorité numéro 1. Nous en faisont notre mission de vous offrir
+              un service rapide, de qualité tout en conservant un prix avantageux.
+              .
+            </div>
 
-            Chez Martham, la qualité est notre priorité numéro 1. Nous en faisont notre mission de vous offrir
-            un service rapide, de qualité tout en conservant un prix avantageux. Nos employés ..
-            .
             <a href='contact' className={`${styles.servicesTitleContactButton}`}> Recevez un devis gratuitement!</a>
           </div>
-          
+
 
         </div>
 
 
-        <div className={styles.servicesMainTitle}>Extérieur</div>
-        <div className={styles.servicesMainTitleContainer}>
-          <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
+        <div className={styles.servicesBodyTitle}>Extérieur</div>
+        <div className={styles.servicesBodyTitleContainer}>
+          <div className={styles.servicesBodyTitleBody}>
 
             Intro rapide sur les services extérieurs:
             <div className={styles.servicesListContainer}>
@@ -78,16 +80,16 @@ export default function Home({ data }: { data: Service[] }) {
                 <li className={styles.servicesList}>Service 6</li>
               </div>
             </div>
-            <a href='contact' className={`${styles.servicesContactButton}`}>Voir nos realisations pour les travaux extérieurs</a>
+            <a href='contact' className={`${styles.servicesBodyButton}`}>Voir nos realisations pour les travaux extérieurs</a>
           </div>
           <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
 
         </div>
 
 
-        <div className={styles.servicesMainTitle}>Intérieur</div>
-        <div className={styles.servicesMainTitleContainer}>
-          <div style={{ color: "black" }} className={styles.servicesMainTitleBody}>
+        <div className={styles.servicesBodyTitle}>Intérieur</div>
+        <div className={styles.servicesBodyTitleContainer}>
+          <div className={styles.servicesBodyTitleBody}>
 
             Intro rapide sur les services intérieurs:
             <div className={styles.servicesListContainer}>
@@ -102,7 +104,7 @@ export default function Home({ data }: { data: Service[] }) {
                 <li className={styles.servicesList}>Service 6</li>
               </div>
             </div>
-            <a href='contact' className={`${styles.servicesContactButton}`}>Voir nos realisations pour les travaux intérieurs (Couleur martham)</a>
+            <a href='contact' className={`${styles.servicesBodyButton}`}>Voir nos realisations pour les travaux intérieurs</a>
           </div>
           <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
 

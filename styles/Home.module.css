@@ -104,11 +104,12 @@
   display: flex;
   width: 70%;
   height: 11rem;
-  background-color: #bfbfbf;
   padding:10px;
   border-radius:5px;
   margin-bottom: 100px;
   position: relative;
+  border-top: black;
+  border-top-style: solid;
 }
 
 .servicesMainTitleBody {
@@ -139,7 +140,7 @@
 }
 
 .servicesTitleContactButton:hover {
-  background-color: white;
+  background-color: #BDB23D;
   color:black;
 }
 
@@ -152,24 +153,53 @@
   margin: 10px 50px;
 }
 
-
-.servicesCard {
-  background-color: #dfdfdf;
+.servicesBodyTitle {
   color: black;
-  height: 250px;
-  width: 80%;
-  align-self: center;
-  margin: 50px 0px;
-  display: flex;
-  flex-direction: row;
+  text-align: center;
+  font-size: xx-large;
+  margin-top: 50px;
+  margin-bottom: 15px;
 }
 
-.servicesThumbnail {
-  height: 100%;
-  aspect-ratio: 1;
-  transform: scale(.95);
-  overflow: hidden;
-  width: 350px;
+.servicesBodyTitleContainer {
+  display: flex;
+  width: 70%;
+  background-color: black;
+  padding:10px;
+  border-radius:5px;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.servicesBodyTitleBody {
+  display:grid;
+  color: white;
+  width: 90%;
+  height: 175px;
+  font-size: x-large;
+  margin-bottom: -50px;
+}
+
+
+.servicesBodyButton  {
+  position: absolute;
+  bottom:0px;
+  margin-bottom: 25px;
+  margin-left: 25px;
+  height: max-content;
+  width: max-content;
+  padding: 0 1rem;
+  display: flex;
+  object-fit: contain;
+  text-align: center;
+  background-color: #BDB23D;
+  color: black;
+  border-radius: 5px;
+  justify-self: center;
+}
+
+.servicesBodyButton:hover {
+  background-color: white;
 }
 
 .servicesImage {
@@ -185,10 +215,6 @@
   text-align: center;
 }
 
-.servicesBody {
-  font-size: 75%;
-  margin: 25px;
-}
 
 
 .realisationsBox {
