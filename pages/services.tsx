@@ -9,7 +9,7 @@ import { debug } from "console"
 const inter = Inter({ subsets: ['latin'] })
 import PlaceholderImg from "../public/ImgSldShow1.png"
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const response = await getServices()
   const data = response.map(item => ({ id: item.Id.toString(), title: item.Title, image: item.ImageUrl, desc: item.Description }))
 

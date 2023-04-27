@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 import PlaceholderImg from "../public/ImgSldShow1.png"
 
 //using the service database for now, eventually make own database
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const response = await getServices()
   const data = response.map(item => ({ id: item.Id.toString(), title: item.Title, image: item.ImageUrl }))
 
