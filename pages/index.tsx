@@ -5,6 +5,7 @@ import styles from '@/styles/Home.module.css'
 import Navbar from './navbar'
 import Reviews from './reviews'
 import ImageSlideShow from "./imgSlideShow"
+import BeforeAfter from "./beforeAfter"
 import PlaceholderImg from "../public/ImgSldShow1.png"
 
 /**
@@ -53,7 +54,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.articleContainer} style={{alignSelf: "last baseline", backgroundColor: "#0b0b0b" }}>
+        <div className={styles.articleContainer} style={{alignSelf: "last baseline"}}>
           <Image src={PlaceholderImg} alt='/' className={styles.articleImg}></Image>
           <div className={styles.articleBodyContainer}>
             <div className={styles.articleTitle}>Nos Services</div>
@@ -66,11 +67,18 @@ export default function Home() {
               <li>Service 2</li>
               <li>Et plus encore!</li>
             </article>
-            <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>En savoir plus</a>
+            <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>Découvrir tout nos services</a>
           </div>
         </div>
-        
-        <Reviews></Reviews>
+
+        <div className={styles.IndexGenericTitle}>
+          Témoignages
+          <div className={styles.IndexGenericTitleBar}/>
+        </div>
+
+        <Reviews/>
+
+        <BeforeAfter/>
 
       </main>
 
