@@ -22,11 +22,9 @@ const BeforeAfter = (props: any) => {
     if (containerRef.current) {
       setImagesSize(containerRef.current);
     }
-    console.log("bb")
   }, [containerRef]);
 
   const setImagesSize = (container: HTMLElement) => {
-    console.log(container.offsetWidth)
     setWidthValue(container.offsetWidth.toLocaleString() + "px");
   };
 
@@ -53,7 +51,7 @@ const BeforeAfter = (props: any) => {
       <input type="range" className={styles.BeforeAfterRange} value={sliderValue} onChange={handleSliderChange}
         style={{ background: "linear-gradient(to right, #BDB23D " + sliderValue.toLocaleString() + "%,black " + sliderValue.toLocaleString() + "%)" }}>
       </input>
-
+      
       <div className={styles.BeforeAfterContainer} style={{ zIndex: "5", display: "flex" }}>
         <div className={styles.BeforeAfterLeftArrow} onClick={() => onClickSlideChange(-1)} />
         <div className={styles.BeforeAfterRightArrow} onClick={() => onClickSlideChange(1)} />
@@ -92,7 +90,7 @@ const BeforeAfter = (props: any) => {
         </div>
         <Image src={ImgSldShow2} alt="/" style={{ width: widthValue }} className={styles.BeforeAfterImage} />
       </div>
-      <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.BeforeAfterButton}> Toutes les réalisations</a>
+      <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.BeforeAfterButton}> Toutes nos réalisations</a>
 
     </div>
 

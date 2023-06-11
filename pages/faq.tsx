@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
 
 
 /**navbar is above the main which theoredically contains everything. This ensures it is always on top...

@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from './navbar'
+import Navbar from '../components/navbar'
 import next, { NextApiResponse, NextApiRequest } from "next"
 import getServices from '../lib/getServices'
 import { debug } from "console"
@@ -11,9 +11,9 @@ import PlaceholderImg from "../public/ImgSldShow1.png"
 
 export async function getStaticProps() {
   const response = await getServices()
-  const data = response.map(item => ({ id: item.Id.toString(), title: item.Title, image: item.ImageUrl, desc: item.Description }))
+  const data = response.map( item => ({ id: item.Id.toString(), title: item.Title, image: item.ImageUrl, desc: item.Description, outside: item.Outside }))
 
-  console.log(console.log(data.map(item => item.title)))
+
   return {
     props: { data },
   }
@@ -24,6 +24,8 @@ interface Service {
   title: string;
   image: string;
   desc: string;
+  outside: boolean;
+  cleanName: string;
 }
 
 export default function Home({ data }: { data: Service[] }) {
@@ -50,7 +52,7 @@ export default function Home({ data }: { data: Service[] }) {
         <div className={styles.servicesMainTitle}>Nos Services</div>
         <div className={styles.servicesMainTitleContainer}>
           <div className={styles.servicesMainTitleBody}>
-            <div style={{padding:"0px 10%", textAlign:"justify"}}>
+            <div style={{ padding: "0px 10%", textAlign: "justify" }}>
               Chez Martham, la qualité est notre priorité numéro 1. Nous en faisont notre mission de vous offrir
               un service rapide, de qualité tout en conservant un prix avantageux.
               .
@@ -67,20 +69,17 @@ export default function Home({ data }: { data: Service[] }) {
         <div className={styles.servicesBodyTitleContainer}>
           <div className={styles.servicesBodyTitleBody}>
 
-            Intro rapide sur les services extérieurs:
+          Services professionnels pour extérieur:
             <div className={styles.servicesListContainer}>
-              <div>
-                <li className={styles.servicesList}>Toitures</li>
-                <li className={styles.servicesList}>Patios</li>
-                <li className={styles.servicesList}>Service 3</li>
-              </div>
-              <div>
-                <li className={styles.servicesList}>Service 4</li>
-                <li className={styles.servicesList}>Service 5</li>
-                <li className={styles.servicesList}>Service 6</li>
-              </div>
+              {data.map(item => (
+                (item.outside) &&
+                <a href={"services/" + item.title} key={item.id} className={styles.servicesList}>
+                  {item.title}
+                </a>
+
+              ))}
             </div>
-            <a href='contact' className={`${styles.servicesBodyButton}`}>Voir nos realisations pour les travaux extérieurs</a>
+            <a href='contact' className={`${styles.servicesBodyButton}`} style={{marginBottom:"-50px"}}>Voir nos realisations pour les travaux extérieurs</a>
           </div>
           <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
 
@@ -91,20 +90,17 @@ export default function Home({ data }: { data: Service[] }) {
         <div className={styles.servicesBodyTitleContainer}>
           <div className={styles.servicesBodyTitleBody}>
 
-            Intro rapide sur les services intérieurs:
+          Services professionnels pour intérieur:
             <div className={styles.servicesListContainer}>
-              <div>
-                <li className={styles.servicesList}>Service 1</li>
-                <li className={styles.servicesList}>Service 2</li>
-                <li className={styles.servicesList}>Service 3</li>
-              </div>
-              <div>
-                <li className={styles.servicesList}>Service 4</li>
-                <li className={styles.servicesList}>Service 5</li>
-                <li className={styles.servicesList}>Service 6</li>
-              </div>
+              {data.map(item => (
+                (!item.outside) &&
+                <a href={"services/" + item.title} key={item.id} className={styles.servicesList}>
+                  {item.title}
+                </a>
+
+              ))}
             </div>
-            <a href='contact' className={`${styles.servicesBodyButton}`}>Voir nos realisations pour les travaux intérieurs</a>
+            <a href='contact' className={`${styles.servicesBodyButton}`} style={{marginBottom:"-50px"}}>Voir nos realisations pour les travaux intérieurs</a>
           </div>
           <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.servicesImage} />
 

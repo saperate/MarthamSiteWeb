@@ -12,4 +12,13 @@ model Services {
   ImageUrl    String? @db.VarChar
   Description String? @db.VarChar
   Id          BigInt  @id
+  Outside     Boolean @default(true)
+}
+
+model realisations {
+  ImageUrls String[]  @db.VarChar
+  Date      DateTime? @db.Date
+  Id        BigInt    @id
+  Outside   Boolean   @default(true)
+  Tags      String[]  @db.VarChar
 }

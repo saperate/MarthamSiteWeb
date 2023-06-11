@@ -9,7 +9,11 @@ type Data = {
 
 export default async function getServices(){
 
-    const allUsers = await prisma.services.findMany()
-    return allUsers;
+    let data = await prisma.realisations.findMany({
+        //skip:3,
+        take:6,
+    })
+
+    return data;
   
 }

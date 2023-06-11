@@ -2,10 +2,10 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from './navbar'
-import Reviews from './reviews'
-import ImageSlideShow from "./imgSlideShow"
-import BeforeAfter from "./beforeAfter"
+import Navbar from '../components/navbar'
+import Reviews from '../components/reviews'
+import ImageSlideShow from "../components/imgSlideShow"
+import BeforeAfter from "../components/beforeAfter"
 import PlaceholderImg from "../public/ImgSldShow1.png"
 
 /**

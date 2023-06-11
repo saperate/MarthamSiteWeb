@@ -1,20 +1,15 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
-import Navbar from '../components/navbar'
+import styles from '@/styles/FileUploader.module.css'
+import React, { useState } from 'react'
 
 
-/**navbar is above the main which theoredically contains everything. This ensures it is always on top...
-      PLANNING:
-      Hamburger menu to keep the menu small on mobile
-      put logo on there
-      keep it slim
-      button to scroll back to top
-      */
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  
+
   return (
     <>
       <Head>
@@ -24,21 +19,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
-      <Navbar title="contact">
 
-      </Navbar>
 
       <main className={styles.main}>
+        <input type="file"
+          accept="Image/*"
+           />
 
-
+          <button > Envoyer au serveur</button>
 
 
       </main>
 
 
       <script>
-        
+
       </script>
     </>
   )

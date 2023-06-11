@@ -1,33 +1,164 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
-import Navbar from './navbar'
-import next, { NextApiResponse, NextApiRequest } from 'next'
+import Navbar from '../components/navbar'
+import { useRouter } from 'next/router'
+import getRealisations from '../lib/getRealisations'
 import getServices from '../lib/getServices'
-import { debug } from 'console'
-const inter = Inter({ subsets: ['latin'] })
 import PlaceholderImg from "../public/ImgSldShow1.png"
+import TempSearchLogo from "../public/TempSearchLogo.png"
+import React, { useState, useEffect, useCallback } from 'react';
 
+
+/*
+<div style={{ marginLeft: "15%", marginTop:"10px"}}>
+          <div style={{marginTop:"10px"}}>Travail Effectué: {currItem.title}</div>
+          <div style={{marginTop:"10px"}}>Emplacement: {conditionalText}</div>
+          <div style={{marginTop:"10px"}}>Date: {currItem.date}</div>
+        </div>
+
+
+        <div className={styles.realisationsTitle}>
+                {item.title}
+              </div>
+        */
 //using the service database for now, eventually make own database
 export async function getStaticProps() {
-  const response = await getServices()
-  const data = response.map(item => ({ id: item.Id.toString(), title: item.Title, image: item.ImageUrl }))
+  const serviceResponse = await getServices()
+  const serviceData = serviceResponse.map(service => ({ id: service.Id.toString(), title: service.Title, image: service.ImageUrl, desc: service.Description, outside: service.Outside }))
 
-  console.log(console.log(data.map(item => item.title)))
+
+  const response = await getRealisations()
+  const data = response.map(item => ({
+    images: item.ImageUrls,
+    date: item.Date?.toLocaleDateString("fr-FR"),
+    id: item.Id.toString(),
+    outside: item.Outside,
+    tags: item.Tags
+  }))
+
   return {
-    props: { data },
+    props: { data, serviceData },
   }
+
+}
+
+interface Item {
+  images: string[];
+  date: string;
+  id: string;
+  outside: boolean;
+  tags: string[];
 }
 
 interface Service {
-  id: string;
+  id: number;
   title: string;
   image: string;
+  desc: string;
+  outside: boolean;
 }
 
-export default function Home({ data }: { data: Service[] }) {
+export default function Home({ data, serviceData }: { data: Item[], serviceData: Service[] }) {
+  var emptyArray: string[] = [];
+  const [currItem, setCurrItem] = useState(data[0]);
+  const [show, setShow] = useState(false);
+  const [currImg, setCurrImg] = useState(0);
+  const [showTags, setShowTags] = useState(false);
+  const [queryTags, setQueryTags] = useState(emptyArray)
 
+  const conditionCard = show ? styles.realisationsCardFullscreen : styles.cardHidden
+  const conditionBackground = show ? styles.backgroundActive : styles.cardHidden
+  const conditionTagContainer = showTags ? styles.searchBarTagsContainer : styles.cardHidden
+
+  const router = useRouter();
+  const { tag } = router.query;
+
+  var fData = data;
+
+  if (tag != undefined) {
+    fData = data.filter(function (item) {
+      for (var v = 0; v < item.tags.length; v++) { //Loop through the item's tags
+        if (typeof tag == 'object') { //if our query has multiple tags:
+          for (var i = 0; i < tag.length; i++) { //Loop through the query's tags
+            if (item.tags[v] == tag[i]) {
+              return true;
+            }
+          }
+
+        }
+        if (item.tags[v] == tag) {
+          return true;
+        }
+      }
+      return false;
+    })
+
+  }
+
+  function onClickTagContainer() {
+    setShowTags(!showTags);
+  }
+
+  function onClickTag(item: Service) {
+    var tag = item.title;
+    var temp: string[] = queryTags;
+    var element = document.getElementById(item.title);
+    for (var i = 0; i < temp.length; i++) {
+      if (temp[i] == tag) {
+        temp.splice(i, 1);
+        setQueryTags(temp);
+
+        if (element != null) {
+          element.className = styles.searchBarTagButton;
+        }
+        console.log(temp);
+        return;
+      }
+    }
+    temp[temp.length] = tag;
+    setQueryTags(temp);
+    if (element != null) {
+      element.className = styles.searchBarTagButtonSelected;
+    }
+    console.log(temp);
+  }
+
+  function onClickSearch() {
+    var url: string = "/realisations?"
+    for (var i = 0; i < queryTags.length; i++) {
+      url = url + "&tag=" + queryTags[i];
+    }
+    setShowTags(false);
+    router.push(url);
+  }
+
+  function onClickClose() {
+    setShow(false);
+  }
+
+  function onClickCard(item: Item) {
+    if (item != currItem) {
+      setCurrImg(0);
+    }
+    setShow(!show);
+    setCurrItem(item);
+    console.log(currItem);
+  }
+
+  function onClickArrow(index: number) {
+    let nextIndex = currImg + index;
+    const imgLenght = currItem.images.length;
+    if (nextIndex < 0) {
+      setCurrImg(imgLenght - 1)
+    }
+    else if (nextIndex > imgLenght - 1) {
+      setCurrImg(0);
+    }
+    else {
+      setCurrImg(nextIndex);
+    }
+  }
 
   return (
     <>
@@ -38,30 +169,41 @@ export default function Home({ data }: { data: Service[] }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div className={conditionCard}>
+        <Image src={currItem.images[currImg]} width={1920} height={1080} alt='/' className={styles.realisationsPic} />
+        <div className={styles.realisationArrow} style={{ alignSelf: "baseline" }} onClick={() => onClickArrow(-1)} />
+        <div className={styles.realisationArrow} style={{ alignSelf: "end" }} onClick={() => onClickArrow(1)} />
+      </div >
+
+      <div className={conditionBackground} onClick={onClickClose} />
+      <Navbar title="realisations" />
 
 
-      <Navbar title="realisations">
-
-      </Navbar>
 
       <main className={styles.main}>
-        <div style={{color:"red"}}>
-        WIP this uses the service database and its old layout. im putting it here cause it would fit more nicely here
-        Also this will basically be a photo gallery. Im thinking that Before/after photos would go as such:
-        you see the final product , there is an indication or smth to hover it maybe a tag, when you do you see a 
-        diagonal line pass over and its like gradually switching to the old pic. It stops in the middle.
-        maybe when click it opens a bigger version of it in the screen so that you can zoom. then you can remove it
-        by either clicking off the box or clicking a x idk which. Also add a search bar by type of job done(ex: toiture)
+
+        <div className={styles.searchBarContainer}>
+          <div className={styles.searchBarButton} onClick={onClickTagContainer}>
+            Travail Exécuté
+          </div>
+          <Image className={styles.searchBarImage} src={TempSearchLogo} alt="/" onClick={onClickSearch}></Image>
+          <div className={conditionTagContainer}>
+            {serviceData.map(item => (
+              <button id={item.title} key={item.id.toString()}
+                className={styles.searchBarTagButton}
+                onClick={() => onClickTag(item)}>
+
+                {item.title}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className={styles.realisationsBox}>
-          {data.map(item => (
-            <div key={item.id} className={styles.realisationsCard}>
-              <Image src={item.image} alt="/" width={640} height={426} className={styles.realisationsThumbnail}/>
-              <div className={styles.realisationsTitle}>
-              {item.title}
-              </div>
-            </div>
+          {fData.map(item => (
+            <button onClick={() => onClickCard(item)} key={item.id.toString()} className={styles.realisationsCard}>
+              <Image src={PlaceholderImg} alt="/" width={640} height={426} className={styles.realisationsThumbnail} />
+            </button>
           ))}
         </div>
 

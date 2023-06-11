@@ -21,7 +21,6 @@ const SldShow = (props: any) => {
           else{
             setActiveSlideIndex(0)
           }
-          console.log(nextIndex, nbsImgs)
           clearInterval(id)
         }, 10000);
 
