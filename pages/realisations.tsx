@@ -23,7 +23,7 @@ import React, { useState, useEffect, useCallback } from 'react';
               </div>
         */
 //using the service database for now, eventually make own database
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const serviceResponse = await getServices()
   const serviceData = serviceResponse.map(service => ({ id: service.Id.toString(), title: service.Title, image: service.ImageUrl, desc: service.Description, outside: service.Outside }))
 

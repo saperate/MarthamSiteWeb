@@ -49,7 +49,7 @@ const BeforeAfter = (props: any) => {
     <div className={`${styles.BeforeAfterTopLevelContainer} `} ref={containerRef}>
 
       <input type="range" className={styles.BeforeAfterRange} value={sliderValue} onChange={handleSliderChange}
-        style={{ background: "linear-gradient(to right, #BDB23D " + sliderValue.toLocaleString() + "%,black " + sliderValue.toLocaleString() + "%)" }}>
+        style={{ background: "linear-gradient(to right, #BDB23D " + sliderValue.toLocaleString() + "%,#1a1a1a " + sliderValue.toLocaleString() + "%)" }}>
       </input>
       
       <div className={styles.BeforeAfterContainer} style={{ zIndex: "5", display: "flex" }}>

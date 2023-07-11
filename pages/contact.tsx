@@ -3,7 +3,9 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from '../components/navbar'
-
+import PlaceholderImg from "../public/ImgSldShow1.png"
+import { useState } from 'react'
+import Footer from '@/components/footer'
 
 /**navbar is above the main which theoredically contains everything. This ensures it is always on top...
       PLANNING:
@@ -15,6 +17,35 @@ import Navbar from '../components/navbar'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [EnteredName, setEnteredName] = useState("");
+  const [EnteredLastName, setEnteredLastName] = useState("");
+  const [EnteredEmail, setEnteredEmail] = useState("");
+  const [EnteredMessage, setEnteredMessage] = useState("");
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault()
+    console.log('Sending');
+    let data = {
+      EnteredName,
+      EnteredLastName,
+      EnteredEmail,
+      EnteredMessage
+    }
+    console.log(data);
+    fetch('/api/sendEmail', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+  }
+
+  function logTextArea(e: any) {
+    setEnteredMessage(e);
+  }
+
   return (
     <>
       <Head>
@@ -24,21 +55,49 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
+
       <Navbar title="contact">
 
       </Navbar>
 
       <main className={styles.main}>
+      <div>
+        <Image src={PlaceholderImg} alt='Image des fondateurs (Martin&Maxine)' className={styles.contactImage} />
+        <div>
+          <div className={styles.contactTitle}>
+            Contactez-Nous
+            <div className={styles.contactTitleBar} />
+          </div>
 
+          <form className={styles.contactForm} encType="multipart/form-data">
 
+            <div className={styles.contactFormNameTopLevel}>
+              <div className={styles.contactFormName}>
+                Prénom:
+                <input type="text" className={styles.contactFormNameInput} onChange={e => setEnteredName(e.target.value)} />
+              </div>
+              <div className={styles.contactFormName}>
+                Nom:
+                <input type="text" className={styles.contactFormNameInput} onChange={e => setEnteredLastName(e.target.value)} />
+              </div>
+            </div>
 
+            <div className={styles.contactFormEmail}>Email:</div>
+            <input type="email" className={styles.contactFormNameInput} style={{ width: "95%" }} onChange={e => setEnteredEmail(e.target.value)} />
+
+            <div className={styles.contactFormEmail}>Message:</div>
+            <textarea className={styles.contactFormNameInput} style={{ width: "95%", height: "175px" }} onChange={e => setEnteredMessage(e.target.value)} />
+
+            <input type="button" className={styles.contactFormSubmitButton} value={"Envoyer"} onClick={(e) => { handleSubmit(e) }} />
+          </form>
+          </div>
+        </div>
 
       </main>
 
 
       <script>
-        
+
       </script>
     </>
   )

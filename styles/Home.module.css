@@ -233,68 +233,68 @@
   text-align: center;
 }
 
-.searchBarContainer{
+.searchBarContainer {
   width: 90%;
   display: grid;
-  gap:.5rem;
+  gap: .5rem;
   grid-template-columns: repeat(2, 200px);
   margin: 25px 0px;
   margin-bottom: 5px;
 }
 
-.searchBarButton{
+.searchBarButton {
   background-color: #1a1a1a;
-  color:white;
+  color: white;
   height: 50px;
   font-size: larger;
   text-align: center;
   line-height: 250%;
-  display:flex;
+  display: flex;
   padding-left: 15%;
 }
 
-.searchBarButton:hover{
+.searchBarButton:hover {
   background-color: #BDB23D;
   cursor: pointer;
 }
 
-.searchBarImage{
+.searchBarImage {
   background-color: #1a1a1a;
-  color:white;
+  color: white;
   height: 50px;
   font-size: larger;
   text-align: center;
   line-height: 250%;
-  width:auto;
+  width: auto;
 }
 
-.searchBarTagsContainer{
+.searchBarTagsContainer {
   width: 200%;
   grid-template-columns: repeat(3, 200px);
-  height:auto;
+  height: auto;
   display: grid;
   margin-left: 25px;
-  gap:5px;
+  gap: 5px;
 }
 
-.searchBarTagButton{
-  width:auto;
+.searchBarTagButton {
+  width: auto;
   background-color: #1a1a1a;
   border-style: none;
 }
 
-.searchBarTagButton:hover{
+.searchBarTagButton:hover {
   background-color: #BDB23D;
   cursor: pointer;
 }
 
-.searchBarTagButtonSelected{
-  width:auto;
+.searchBarTagButtonSelected {
+  width: auto;
   background-color: #BDB23D;
   border-style: none;
 }
 
-.searchBarTagButtonSelected:hover{
+.searchBarTagButtonSelected:hover {
   cursor: pointer;
 }
 
@@ -309,7 +309,7 @@
 .realisationsThumbnail {
   width: 110%;
   display: flex;
-
+  height: 100%;
 }
 
 .realisationsCard {
@@ -446,15 +446,13 @@
   width: max-content;
   align-self: center;
   color: white;
-  background-color: #BDB23D;
-  padding: 5px;
+  padding: 10px;
+  background-color: #1a1a1a;
+  border-radius: 5px;
 }
 
 .articleButton:hover {
-
-  padding: 10px;
-  background-color: black;
-
+  background-color: #BDB23D;
 }
 
 .IndexGenericTitle {
@@ -588,20 +586,171 @@
 .BeforeAfterButton {
   width: max-content;
   align-self: center;
-  background-color: #BDB23D;
-  padding: 5px;
+  padding: 10px;
+  background-color: #1a1a1a;
   bottom: -50px;
   position: absolute;
   margin-left: 40%;
   width: 20%;
   text-align: center;
+  border-radius: 5px;
 }
 
 .BeforeAfterButton:hover {
+  background-color: #BDB23D;
+}
 
+.IndexFaqButtonTopLevel {
+  color: black;
+  width: 60%;
+  margin-bottom: 50px;
+  font-size: x-large;
+}
+
+.IndexFaqButtonContainer {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.IndexFaqButton {
+  width: max-content;
+  align-self: center;
+  color: white;
+  padding: 10px;
+  background-color: #1a1a1a;
+  border-radius: 5px;
+  margin-top: 25px;
+  font-size: medium;
+}
+
+.IndexFaqButton:hover {
+  background-color: #BDB23D;
+}
+
+.FaqQnaContainer {
+  width: 80%;
+  margin-top: 10%;
+}
+
+.QnaQuestionContainer {
+  margin-bottom: 2.5%;
+  color: #BDB23D;
+  background-color: black;
+  padding: 2%;
+  text-align: center;
+  height: auto;
+  min-height: 120px;
+}
+
+.QnaQuestion {
+  font-size: x-large;
+  padding: 2%;
+}
+
+.QnaBar {
+  background-color: #1a1a1a;
+  height: 3px;
+  width: 60%;
+  margin-left: 20%;
+  transition: all 0.2s;
+}
+
+.QnaAnswer {
+  width: 100%;
+  font-size: large;
+  background: black;
+  padding: 2%;
+  visibility: visible;
+  transition: margin .4s, visibility .2s, color .4s;
+}
+
+.QnaAnswerHidden {
+  font-size: large;
+  background: black;
+  padding: 2%;
+  margin-top: -90px;
+  visibility: hidden;
+  color: #00000000;
+  transition: margin .4s, visibility .2s, color .2s;
+}
+
+.contactImage {
+  width: 30%;
+  position: absolute;
+  left: 10%;
+  height: 550px;
+  margin-top: 5%;
+}
+
+.contactTitle {
+  color: black;
+  font-size: xxx-large;
+  margin-top: 10%;
+  margin-left: 30%;
+}
+
+.contactTitleBar {
+  width: 175%;
+  height: 5px;
+  background-color: black;
+  margin-left: -30%;
+}
+
+.contactForm {
+  width: 40%;
+  margin-left: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contactFormNameTopLevel {
+  display: flex;
+  margin-top: 5%;
+}
+
+.contactFormName {
+  width: 50%;
+  color: black;
+  font-size: x-large;
+}
+
+.contactFormNameInput {
+  width: 90%;
+  height: auto;
+  font-size: x-large;
+  background-color: black;
+  border-style: none;
+}
+
+.contactFormEmail {
+  color: black;
+  font-size: x-large;
+  margin-top: 5%;
+}
+
+.contactFormSubmitButton {
+  align-self: center;
+  color: white;
   padding: 10px;
   background-color: black;
+  border-radius: 5px;
+  margin-top: 25px;
+  font-size: larger;
+  width: 80%;
+  margin-left: -2.5%;
+}
 
+.contactFormSubmitButton:hover {
+  background-color: #BDB23D;
+}
+
+.footerContainer {
+  height: 30%;
+  width: 100%;
+  position: absolute;
+  bottom: -6%;
+  background-color: gray;
 }
 
 .header {

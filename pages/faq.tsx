@@ -3,6 +3,9 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/Home.module.css'
 import Navbar from '../components/navbar'
+import QnA from '../components/QnA'
+import GenericTitle from '@/components/GenericTitle'
+import Link from 'next/link'
 
 
 /**navbar is above the main which theoredically contains everything. This ensures it is always on top...
@@ -24,21 +27,33 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      
+
       <Navbar title="faq">
 
       </Navbar>
 
       <main className={styles.main}>
 
+        <GenericTitle Title="Foire Aux Questions"/>
 
+        <div className={styles.FaqQnaContainer} >
+          <QnA question="Question intéressante" answer="Réponse intéligente"></QnA>
+          <QnA question="Question intéressante" answer="Réponse intéligente"></QnA>
+          <QnA question="Question intéressante" answer="Réponse intéligente"></QnA>
+        </div>
 
-
+        <GenericTitle Title="Votre question n'est pas ici?" Style={{marginBottom:"50px"}}/>
+        <div className={styles.IndexFaqButtonTopLevel}>
+          Si votre question ne figure pas dans cette liste, vous pouvez utiliser le formulaire à la page de contact pour poser votre question.
+          <div className={styles.IndexFaqButtonContainer} >
+            <Link className={styles.IndexFaqButton} href="/contact">Contacter un employé</Link>
+          </div>
+        </div>
       </main>
 
 
       <script>
-        
+
       </script>
     </>
   )

@@ -7,6 +7,9 @@ import Reviews from '../components/reviews'
 import ImageSlideShow from "../components/imgSlideShow"
 import BeforeAfter from "../components/beforeAfter"
 import PlaceholderImg from "../public/ImgSldShow1.png"
+import Link from 'next/link'
+import GenericTitle from '@/components/GenericTitle'
+import Article from '@/components/Article'
 
 /**
       PLANNING:
@@ -34,51 +37,42 @@ export default function Home() {
 
         <ImageSlideShow />
         <title className={styles.title}>Martham Construction: Qualité, Fiabilité; Notre Spécialitée.</title>
-        
-        
 
+        <Article 
+        containerStyle={{flexDirection:"row-reverse"}} 
+        image={PlaceholderImg} 
+        title={"Notre Histoire"} 
+        body={"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui,quia illum quam minima dolorum illo ad consequuntur earum inventore ratione,iste minus rerum, ex vero molestiae corporis atque sapiente voluptatem?Lorem ipsum dolor sit amet consectetur adipisicing elit.quia illum quam minima dolorum illo ad consequuntur earum inventore ratione, (+- 50 mots)"}
+        link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
+        linkName={"Des Questions?"}
+        />
 
-        <div className={styles.articleContainer} style={{flexDirection:"row-reverse"}}>
-        <Image src={PlaceholderImg} alt='/' className={styles.articleImg}></Image>
-          <div className={styles.articleBodyContainer}>
-            <div className={styles.articleTitle}>Notre Histoire</div>
-            <article className={styles.articleBody} style={{paddingBottom:"50px"}}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui,
-              quia illum quam minima dolorum illo ad consequuntur earum inventore ratione,
-              iste minus rerum, ex vero molestiae corporis atque sapiente voluptatem? 
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              quia illum quam minima dolorum illo ad consequuntur earum inventore ratione, (+- 50 mots)
-              
-            </article>
-            <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>Des Questions?</a>
+        <Article 
+        containerStyle={{alignSelf:"last baseline"}}
+        image={PlaceholderImg}
+        title={"Nos Services"}
+        body={"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui,quia illum quam minima dolorum illo ad consequuntur earum inventore ratione,iste minus rerum, ex vero molestiae corporis atque sapiente voluptatem? (+- 30 mots)"}
+        additionals={'<div style={{ height: "30px" }} /><li>Service 1</li><li>Service 2</li><li>Et plus encore!</li>'}
+        link={"https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
+        linkName={"Découvrir tous nos services"}
+        />
+
+        <GenericTitle Title="Témoignages"/>
+
+        <Reviews />
+
+        <BeforeAfter />
+
+        <GenericTitle Title="Des Questions?" Style={{marginBottom:"50px"}}/>
+
+        <div className={styles.IndexFaqButtonTopLevel}>
+          Pour plus de renseignements, référez vous à notre foire aux questions où les questions
+          les plus courantes sont posées
+          <div className={styles.IndexFaqButtonContainer} >
+            <Link className={styles.IndexFaqButton} href="/faq">Foire Aux Questions</Link>
           </div>
         </div>
 
-        <div className={styles.articleContainer} style={{alignSelf: "last baseline"}}>
-          <Image src={PlaceholderImg} alt='/' className={styles.articleImg}></Image>
-          <div className={styles.articleBodyContainer}>
-            <div className={styles.articleTitle}>Nos Services</div>
-            <article className={styles.articleBody}>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Qui,
-              quia illum quam minima dolorum illo ad consequuntur earum inventore ratione,
-              iste minus rerum, ex vero molestiae corporis atque sapiente voluptatem? (+- 30 mots)
-              <div style={{height:"30px"}}/>
-              <li>Service 1</li>
-              <li>Service 2</li>
-              <li>Et plus encore!</li>
-            </article>
-            <a href='https://www.youtube.com/watch?v=dQw4w9WgXcQ' className={styles.articleButton}>Découvrir tout nos services</a>
-          </div>
-        </div>
-
-        <div className={styles.IndexGenericTitle}>
-          Témoignages
-          <div className={styles.IndexGenericTitleBar}/>
-        </div>
-
-        <Reviews/>
-
-        <BeforeAfter/>
 
       </main>
 

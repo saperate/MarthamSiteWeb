@@ -1,11 +1,98 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
-    min-height: 100vh;
-  
-    height: max-content;
-    background-color: white;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+
+  height: max-content;
+  background-color: white;
+}
+
+.passwordFieldContainer{
+  width:200px;
+  height:140px;
+  margin-top:20vh;
+  border-radius: 25%;
+  background-color: black;
+  display:flex;
+  flex-direction: column;
+}
+
+.passwordField{
+  align-self:center;
+  width:80%;
+  margin-top: 11%;
+}
+
+.FileUploadContainer {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+.FileUploadTagList {
+  display: grid;
+  margin-left: 10%;
+  grid-template-columns: repeat(2, 50%);
+  gap:5px;
+}
+
+.FileUploaderTagButton{
+  width:auto;
+  background-color: #1a1a1a;
+}
+
+.FileUploaderTagButton:hover{
+  background-color: #BDB23D;
+  cursor: pointer;
+}
+
+.FileUploaderButton{
+  background-color: #1a1a1a;
+  height:auto;
+}
+
+.FileUploaderButton:hover{
+  background-color: #BDB23D;
+  cursor: pointer;
+}
+
+.FileUploaderTagButtonSelected{
+  background-color: #BDB23D;
+}
+
+.FileUploaderTagButtonSelected:hover{
+  cursor: pointer;
+}
+
+.cardShown{
+  display: contents;
+}
+
+.cardHidden{
+  display: none;
+}
+
+.ImagePreviewTopLevelContainer{
+  display: flex;
+  margin-left: 27%;
+  width:70%;
+  margin-bottom: 100px;
+  flex-direction: row;
+}
+
+.ImagePreviewArrowContainer{
+  width:50px;
+  display: flex;
+  flex-direction: row;
+}
+
+.ImagePreviewArrow{
+  width:100%;
+  height:50px;
+  background-color: grey;
+  align-self: center;
+}

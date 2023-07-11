@@ -2,14 +2,165 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '@/styles/FileUploader.module.css'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import getServices from '../lib/getServices'
+import { env } from 'process'
+require('dotenv').config();
 
+
+export async function getServerSideProps() {
+  const response = await getServices()
+  const data = response.map(item => ({
+    id: item.Id.toString(),
+    title: item.Title,
+    image: item.ImageUrl,
+    desc: item.Description,
+    outside: item.Outside
+  }))
+
+
+  return {
+    props: { data },
+  }
+}
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
-  
+interface Service {
+  id: number;
+  title: string;
+  image: string;
+  desc: string;
+  outside: boolean;
+}
 
+
+export default function Home({ data }: { data: Service[] }) {
+  var emptyArray: string[] = [];
+  const [tagsString, setTagsString] = useState("");
+  const [queryTags, setQueryTags] = useState(emptyArray)
+  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState([]);
+  const [fileDataURL, setFileDataURL] = useState(null);
+  const [imageIndex, setImageIndex] = useState(0);
+  const [showPreview, setShowPreview] = useState(false);
+  const [showPasswordScreen, setShowPasswordScreen] = useState(true);
+  const [enteredPassword, setEnteredPassword] = useState("");
+
+  const conditionPreviewContainer = showPreview ? styles.ImagePreviewTopLevelContainer : styles.cardHidden
+  const conditionPasswordContainer = showPasswordScreen ? styles.cardShown : styles.cardHidden
+  const conditionPageContainer = !showPasswordScreen ? styles.cardShown : styles.cardHidden
+
+
+
+  async function onSubmitPassword(){
+    if (enteredPassword) {
+      const response = await fetch('/api/checkPassword', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password: enteredPassword }),
+      });
+
+      if (response.ok) {
+        // Password verification successful
+        setShowPasswordScreen(false); // Hide the password screen
+      } else {
+        // Password verification failed
+        alert('Invalid password');
+      }
+    }
+  }
+
+  const changeHandler = (e: any) => {
+    if(showPasswordScreen){return;}
+    setShowPreview(true);
+    setFiles(e.target.files);
+    const file = e.target.files[imageIndex];
+    setFile(file);
+  }
+  useEffect(() => {
+    if(showPasswordScreen){return;}
+    var fileReader: any;
+    let isCancel = false;
+    if (file) {
+      fileReader = new FileReader();
+      fileReader.onload = (e: any) => {
+        const { result } = e.target;
+        if (result && !isCancel) {
+          setFileDataURL(result)
+        }
+      }
+      fileReader.readAsDataURL(file);
+    }
+    return () => {
+      isCancel = true;
+      if (fileReader && fileReader.readyState === 1) {
+        fileReader.abort();
+      }
+    }
+
+  }, [file]);
+
+  function onClickArrow(index: number) {
+    if(showPasswordScreen){return;}
+    let nextIndex = imageIndex + index;
+    const imgLenght = files.length;
+    if (nextIndex < 0) {
+      setImageIndex(imgLenght - 1);
+      setFile(files[imageIndex - 1]);
+    }
+    else if (nextIndex > imgLenght - 1) {
+      setImageIndex(0);
+      setFile(files[0])
+    }
+    else {
+      setImageIndex(nextIndex);
+      setFile(files[nextIndex])
+    }
+  }
+
+  function makeTagString() {
+    var temp = "";
+    for (var i = 0; i < queryTags.length; i++) {
+      if (i != 0) {
+        temp += "," + queryTags[i]
+      }
+      else {
+        temp += queryTags[i]
+      }
+    }
+    console.log(temp.split(","));
+    setTagsString(temp);
+  }
+
+  function onClickTag(item: Service) {
+    if(showPasswordScreen){return;}
+    var tag = item.title;
+    var temp: string[] = queryTags;
+    var element = document.getElementById(item.title);
+    for (var i = 0; i < temp.length; i++) {
+      if (temp[i] == tag) {
+        temp.splice(i, 1);
+        setQueryTags(temp);
+
+        if (element != null) {
+          element.className = styles.FileUploaderTagButton;
+        }
+        makeTagString();
+        console.log(temp);
+        return;
+      }
+    }
+    temp[temp.length] = tag;
+    setQueryTags(temp);
+    if (element != null) {
+      element.className = styles.FileUploaderTagButtonSelected;
+    }
+    makeTagString();
+    console.log(temp);
+  }
   return (
     <>
       <Head>
@@ -22,19 +173,58 @@ export default function Home() {
 
 
       <main className={styles.main}>
-        <input type="file"
-          accept="Image/*"
-           />
 
-          <button > Envoyer au serveur</button>
+        <div className={conditionPasswordContainer}>
+          <div className={styles.passwordFieldContainer} >
+            <div className={styles.passwordField} style={{fontSize:"small"}} > Entrez votre mot de passe</div>
+            <input type="password" className={styles.passwordField} id="password" 
+              onChange={(e) => setEnteredPassword(e.target.value)}/>
+            <input type="button" className={styles.passwordField} 
+              value={"Confirmer"} style={{width:"50%"}} onClick={onSubmitPassword}/>
+          </div>
+        </div>
 
 
+
+        <div className={conditionPageContainer}>
+          <div style={{ marginTop: "10%", marginBottom: "10%" }}>
+            <form action="/api/fileUpload" method="POST" encType="multipart/form-data"
+              className={styles.FileUploadContainer} onChange={changeHandler} >
+              <div style={{ color: "black" }}>Selectionnez les images que vous souhaitez envoyer.</div>
+              <input type="file" name="upload" multiple accept="image/*" />
+              <input type="text" name="tags" value={tagsString || ""}
+                onChange={e => setTagsString(e.target.value)} style={{ display: "none" }} />
+
+              <div style={{ color: "black" }}>Quel Travaux ont été effectués?</div>
+              <div className={styles.FileUploadTagList}>
+                {data.map(item => (
+                  <button type="button" id={item.title} key={item.id.toString()}
+                    className={styles.FileUploaderTagButton}
+                    onClick={() => onClickTag(item)}>
+                    {item.title}
+                  </button>
+                ))}
+              </div>
+
+              <div style={{ color: "black" }}>Clickez ici pour envoyer les images
+                <br />(ATTENTION! Ces images seront publiques!!)</div>
+
+              <input type="hidden" value={enteredPassword} name="password" />
+              <input type="submit" value="Envoyer" multiple className={styles.FileUploaderButton} />
+
+            </form>
+          </div>
+          <div className={conditionPreviewContainer}>
+            <div className={styles.ImagePreviewArrowContainer} >
+              <button className={styles.ImagePreviewArrow} onClick={() => onClickArrow(-1)}></button>
+            </div>
+            <img src={fileDataURL || ""} alt='/' style={{ width: "50%" }}></img>
+            <div className={styles.ImagePreviewArrowContainer} >
+              <button className={styles.ImagePreviewArrow} onClick={() => onClickArrow(1)}></button>
+            </div>
+          </div>
+        </div>
       </main>
-
-
-      <script>
-
-      </script>
     </>
   )
 }
